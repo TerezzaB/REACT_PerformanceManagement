@@ -5,6 +5,7 @@ import Signup from "./views/logged_off/Signup";
 import Dashboard from "./views/logged_in/Dashboard";
 import UserProfile from "./views/logged_in/UserProfile";
 import AdminDashboard from "./views/admin/AdminDashboard";
+import NotAuthorized from "./views/NotAuthorized";
 
 const PrivateRoute = ({ children, role }) => {
   const { loggedInUser } = useAuth();
@@ -28,6 +29,9 @@ export default function App(){
           {/* Logged-off Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
+          <Route path="/not-authorized" element={<NotAuthorized />} />
+
 
           {/* Logged-in Routes */}
           <Route
