@@ -1,34 +1,39 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import { auth } from "../firebase/firebase";
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setLoggedInUser({ id: user.uid, email: user.email });
-      } else {
-        setLoggedInUser(null);
-      }
-    });
-
-    return unsubscribe;
-  }, []);
-
   const login = async (email, password) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      setLoggedInUser(userCredential.user);
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      throw error;
+    }
   };
 
   const signup = async (email, password) => {
-    await createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      setLoggedInUser(userCredential.user);
+    } catch (error) {
+      console.error("Signup failed:", error.message);
+      throw error; // Pre ošetrenie chýb v komponentoch
+    }
   };
 
   const logout = async () => {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+      setLoggedInUser(null);
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
   };
 
   return (
