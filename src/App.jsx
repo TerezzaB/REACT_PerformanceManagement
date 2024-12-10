@@ -14,6 +14,7 @@ const PrivateRoute = ({ children, role }) => {
     return <Navigate to="/login" />;
   }
 
+  // ROLE CONTROL
   if (role && loggedInUser.role !== role) {
     return <Navigate to="/not-authorized" />;
   }
@@ -31,7 +32,6 @@ export default function App(){
           <Route path="/signup" element={<Signup />} />
 
           <Route path="/not-authorized" element={<NotAuthorized />} />
-
 
           {/* Logged-in Routes */}
           <Route
