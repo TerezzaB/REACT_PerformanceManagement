@@ -1,7 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function LogIn() {
+  const navigate = useNavigate();
+
+  const toSignup = () => {
+    navigate('/signup');
+  };
   return (
-    <h1 className='text-cyan-400'>LOGIN</h1>
+    <>
+      <div className='text-center text-white border-white'>
+        <h1>LOGIN</h1>
+        <button onClick={toSignup} className='border-lime-500'>Sign Up</button>
+      </div>
+    </>
   )
 }

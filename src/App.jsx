@@ -1,11 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./context/Auth";
-import Login from "./views/logged_off/Login";
-import Signup from "./views/logged_off/Signup";
-import Dashboard from "./views/logged_in/Dashboard";
-import UserProfile from "./views/logged_in/UserProfile";
-import AdminDashboard from "./views/admin/AdminDashboard";
-import NotAuthorized from "./views/NotAuthorized";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/Auth';
+import Login from './views/logged_off/Login';
+import Signup from './views/logged_off/Signup';
+import Dashboard from './views/logged_in/Dashboard';
+import UserProfile from './views/logged_in/UserProfile';
+import AdminDashboard from './views/admin/AdminDashboard';
+import NotAuthorized from './views/NotAuthorized';
+import Header from './components/Header/Header';
+import './App.css'
 
 const PrivateRoute = ({ children, role }) => {
   const { loggedInUser } = useAuth();
@@ -14,7 +16,6 @@ const PrivateRoute = ({ children, role }) => {
     return <Navigate to="/login" />;
   }
 
-  // ROLE CONTROL
   if (role && loggedInUser.role !== role) {
     return <Navigate to="/not-authorized" />;
   }
@@ -22,18 +23,16 @@ const PrivateRoute = ({ children, role }) => {
   return children;
 };
 
-export default function App(){
+export default function App() {
+
   return (
     <AuthProvider>
       <Router>
+        <Header />
         <Routes>
-          {/* Logged-off Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-
           <Route path="/not-authorized" element={<NotAuthorized />} />
-
-          {/* Logged-in Routes */}
           <Route
             path="/dashboard"
             element={
@@ -58,13 +57,9 @@ export default function App(){
               </PrivateRoute>
             }
           />
-
-          {/* Default path */}
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </AuthProvider>
   );
-};
-
-
+}

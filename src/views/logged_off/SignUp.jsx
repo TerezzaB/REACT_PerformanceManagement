@@ -5,7 +5,7 @@ export default function Signup(){
   const { signup } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // Možnosť vybrať rolu
+  const [role, setRole] = useState("user"); // Choose role
 
   const handleSignup = async () => {
     try {
