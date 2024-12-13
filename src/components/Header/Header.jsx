@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   return (
-    <div className="sticky top-0 flex justify-between items-center p-2 _nav">
+    <div className="sticky top-0 flex justify-between items-center p-2 bg-white shadow-md z-50">
       <div className="flex-1 flex justify-center space-x-4">
         <NavLink
           to="/dashboard"

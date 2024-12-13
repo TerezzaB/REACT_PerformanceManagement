@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthProvider';
 
 export default function LogIn() {
   const navigate = useNavigate();
-  const { login } = useAuth(); // Using login function from AuthProvider
+  const { login, loggedInUser } = useAuth(); // Funkcia login a prihlásený užívateľ
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
-    setError(""); // Error reset
+    setError(""); // Resetovanie chýb
     try {
       await login(email, password);
       console.log("Successfully logged in!");
-      navigate('/dashboard');
     } catch (err) {
       console.error("Login failed:", err.message);
       setError("Failed to log in. Please check your credentials.");
     }
   };
+
+  // useEffect for listening to changes loggedInUser
+  useEffect(() => {
+    if (loggedInUser) {
+      if (loggedInUser.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  }, [loggedInUser, navigate]);
 
   const toSignup = () => {
     navigate('/signup');
