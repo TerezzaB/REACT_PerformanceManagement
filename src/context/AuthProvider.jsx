@@ -14,26 +14,32 @@ export const AuthProvider = ({ children }) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // LOADING ROLES from firebase
+      // Load user data from Firestore
       const userDoc = await getDoc(doc(db, "users", user.uid));
       const userData = userDoc.exists() ? userDoc.data() : {};
 
-      setLoggedInUser({ ...user, role: userData.role });
+      setLoggedInUser({ ...user, ...userData });
     } catch (error) {
       console.error("Login failed:", error.message);
       throw error;
     }
   };
 
-  const signup = async (email, password, role = "user") => {
+  const signup = async (first_name, last_name, email, password, role = "user") => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // save user role into firebase
-      await setDoc(doc(db, "users", user.uid), { role });
+      // Save user data into Firestore (password should be excluded later)
+      await setDoc(doc(db, "users", user.uid), {
+        first_name,
+        last_name,
+        email,
+        role,
+        password
+      });
 
-      setLoggedInUser({ ...user, role });
+      setLoggedInUser({ uid: user.uid, email, first_name, last_name, role, password });
     } catch (error) {
       console.error("Signup failed:", error.message);
       throw error;

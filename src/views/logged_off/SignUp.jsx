@@ -1,32 +1,68 @@
-import { useAuth } from "../../context/Auth";
+import { useAuth } from "../../context/AuthProvider";
 import { useState } from "react";
 
-export default function Signup(){
+export default function Signup() {
   const { signup } = useAuth();
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("user"); // Choose role
 
   const handleSignup = async () => {
     try {
-      await signup(email, password, role);
+      await signup(first_name, last_name, email, password, role);
     } catch (error) {
       console.error("Signup failed:", error.message);
     }
   };
 
   return (
-    <div>
-      <h1>Signup</h1>
-      <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <select onChange={(e) => setRole(e.target.value)}>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
-      <button onClick={handleSignup}>Signup</button>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h1 className="text-4xl my-9 font-bold text-gray-700 text-center">Create Account</h1>
+        
+        <div className="space-y-4">
+          <input
+            type="text"
+            placeholder="First Name"
+            onChange={(e) => setFirstName(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:cursor-pointer"
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            onChange={(e) => setLastName(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:cursor-pointer"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:cursor-pointer"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 hover:cursor-pointer"
+          />
+          <select
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-pink-500 hover:cursor-pointer"
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <button
+          onClick={handleSignup}
+          className="w-full mt-6 bg-pink-500 text-white py-3 rounded-lg font-semibold hover:bg-pink-600 transition duration-200"
+        >
+          Sign Up
+        </button>
+      </div>
     </div>
   );
-};
-
-
+}
