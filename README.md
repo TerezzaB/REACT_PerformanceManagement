@@ -23,19 +23,12 @@ A simple User Management application built with React + Vite.
    ```bash
    git clone https://github.com/TerezzaB/REACT_UserManagement.git
 
-2. **Navigate to the project directory**
-
-   Change to the project directory with:
-
-   ```bash
-   cd user_management
-
-3. **Install the dependencies**
+2. **Install the dependencies**
 
    ```bash
    npm install
 
-4. **Run the application**
+3. **Run the application**
 
    ```bash
    npm run dev
