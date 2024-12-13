@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
+
+  const isLoginOrSignup = ['/login', '/signup'].includes(location.pathname);
+
+  if (isLoginOrSignup) {
+    return null;
+  }
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
