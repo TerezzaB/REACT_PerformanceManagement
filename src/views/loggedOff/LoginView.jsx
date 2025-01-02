@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthProvider';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
 
 export default function LogIn() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function LogIn() {
   const handleLogin = async () => {
     setError(""); // Resetovanie chýb
     try {
-      await login(email, password);
+      await login(email, password); // Login cez AuthProvider
       console.log("Successfully logged in!");
     } catch (err) {
       console.error("Login failed:", err.message);
@@ -20,19 +20,20 @@ export default function LogIn() {
     }
   };
 
-  // useEffect for listening to changes loggedInUser
+
+  // Navigation to dasboard or admin dashboard according to role
   useEffect(() => {
     if (loggedInUser) {
-      if (loggedInUser.role === 'admin') {
-        navigate('/admin');
+      if (loggedInUser.role === "admin") {
+        navigate("/admin");
       } else {
-        navigate('/dashboard');
+        navigate("/dashboard");
       }
     }
   }, [loggedInUser, navigate]);
 
   const toSignup = () => {
-    navigate('/signup');
+    navigate("/signup");
   };
 
   return (

@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthProvider';
-import Login from './views/logged_off/Login';
-import Signup from './views/logged_off/Signup';
-import Dashboard from './views/logged_in/Dashboard';
-import UserProfile from './views/logged_in/UserProfile';
+import Login from './views/loggedOff/LoginView';
+import Signup from './views/loggedOff/SignupView';
+import Dashboard from './views/user/Dashboard';
 import AdminDashboard from './views/admin/AdminDashboard';
 import NotAuthorized from './views/NotAuthorized';
 import Header from './components/Header/Header';
+import Profile from './views/ProfileView'
 import './App.css'
 
 const PrivateRoute = ({ children, role }) => {
@@ -45,7 +45,7 @@ export default function App() {
             path="/profile"
             element={
               <PrivateRoute>
-                <UserProfile />
+                <Profile />
               </PrivateRoute>
             }
           />
