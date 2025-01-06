@@ -27,7 +27,7 @@ export default function LogIn() {
       if (loggedInUser.role === "admin") {
         navigate("/admin");
       } else {
-        navigate("/dashboard");
+        navigate("/userdashboard");
       }
     }
   }, [loggedInUser, navigate]);

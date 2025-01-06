@@ -1,45 +1,58 @@
 import React from 'react';
-import { AuthProvider, useAuth } from './context/Auth';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-// Login/Signup
-import LoginView from '../views/loggedOff/LoginView';
-import SignupView from '../views/loggedOff/SignupView';
-import NotAuthorized from '../views/NotAuthorized';
-
-// User
-import DashboardView from '../views/user/Dashboard';
-// Admin
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthProvider';
+import Login from '../views/loggedOff/LoginView';
+import Signup from '../views/loggedOff/SignupView';
+import UserDashboard from '../views/user/UserDashboard';
 import AdminDashboard from '../views/admin/AdminDashboard';
+import NotAuthorized from '../views/NotAuthorized';
+import Profile from '../views/ProfileView';
 
+const PrivateRoute = ({ children, role }) => {
+  const { loggedInUser } = useAuth();
 
-export default function AppRouter() {
-    return (
-        <AuthProvider>
-            <Router>
-                <Routes>
-                    <Route path="/login" element={<LoginView />} />
-                    <Route path="/signup" element={<SignupView />} />
-                    <Route path="/not-authorized" element={<NotAuthorized />} />
-                    <Route
-                        path="/dashboard"
-                        element={
-                            <PrivateRoute>
-                                <DashboardView />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route
-                        path="/admin"
-                        element={
-                            <PrivateRoute role="admin">
-                                <AdminDashboard />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route path="*" element={<Navigate to="/login" />} />
-                </Routes>
-            </Router>
-        </AuthProvider>
-    );
+  if (!loggedInUser) {
+    return <Navigate to="/login" />;
+  }
+
+  if (role && loggedInUser.role !== role) {
+    return <Navigate to="/not-authorized" />;
+  }
+
+  return children;
 };
 
+export default function AppRouter() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/not-authorized" element={<NotAuthorized />} />
+      <Route
+        path="/UserDashboard"
+        element={
+          <PrivateRoute>
+            <UserDashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <PrivateRoute role="admin">
+            <AdminDashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
+  );
+}

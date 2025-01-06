@@ -1,0 +1,80 @@
+{
+    "overview": {
+      "metrics": {
+        "CTR": {
+          "current": 15,
+          "target": 15
+        },
+        "conversions": {
+          "current": 346,
+          "target": 400
+        },
+        "cost_per_conversion": {
+          "current": 342,
+          "target": 400
+        },
+        "PNO": {
+          "current": 21,
+          "target": 20
+        }
+      }
+    },
+    "budgetManagement": {
+      "monthlyBudget": {
+        "totalBudget": 30000,
+        "spent": 28475,
+        "remaining": 1525
+      },
+      "PNOTracking": {
+        "current": 32,
+        "target": 30
+      },
+      "dailySpend": {
+        "current": 824,
+        "target": 1000
+      },
+      "dailyRevenue": {
+        "current": 3145,
+        "target": 4000
+      }
+    },
+    "kpiDetails": {
+      "metrics": [
+        {
+          "metric": "Total spend",
+          "current": 28475,
+          "target": 30000,
+          "status": "Not Met"
+        },
+        {
+          "metric": "Conversions",
+          "current": 458,
+          "target": 400,
+          "status": "Met"
+        },
+        {
+          "metric": "Cost/Conv.",
+          "current": 62,
+          "target": 75,
+          "status": "Met"
+        },
+        {
+          "metric": "Conv. rate",
+          "current": 3.4,
+          "target": 3.5,
+          "status": "Not Met"
+        }
+      ]
+    },
+    "charts": {
+      "conversions": {
+        "data": [346, 280, 310, 330, 370, 400],
+        "labels": ["Aug 2024", "Sep 2024", "Oct 2024", "Nov 2024", "Dec 2024", "Jan 2025"]
+      },
+      "cpa": {
+        "data": [62, 58, 60, 64, 68, 70],
+        "labels": ["Aug 2024", "Sep 2024", "Oct 2024", "Nov 2024", "Dec 2024", "Jan 2025"]
+      }
+    }
+  }
+  
