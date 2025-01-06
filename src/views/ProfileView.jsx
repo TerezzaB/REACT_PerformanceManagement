@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import UserInfo from "../components/user/profile/UserInfo";
+import LogoutButton from "../components/user/profile/LogoutButton";
+import Avatar from "../assets/default-avatar.png"
 
 export default function ProfileView() {
   const { loggedInUser, logout } = useAuth();
   const navigate = useNavigate();
-
-
+  
   const handleLogout = async () => {
     try {
       await logout();
@@ -17,22 +19,26 @@ export default function ProfileView() {
     }
   };
 
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">User Informations</h1>
+    <div className="min-h-screen flex flex-col items-center">
+      <h1 className="text-3xl font-bold mb-6 text-blue-600">My Profile</h1>
       {loggedInUser ? (
-        <div>
-          <p><strong>First Name:</strong> {loggedInUser.first_name}</p>
-          <p><strong>Last Name:</strong> {loggedInUser.last_name}</p>
-          <p><strong>Email:</strong> {loggedInUser.email}</p>
-          <p><strong>Role:</strong> {loggedInUser.role}</p>
-          <br />
-          <button onClick={handleLogout} className="danger-button">
-            Logout
-          </button>
+        <div className="w-full max-w-md rounded-lg p-6">
+          <div className="flex flex-col items-center mb-6">
+            <img
+              src={Avatar}
+              alt="Profile"
+              className="w-32 h-32 rounded-full mb-5"
+            />
+          </div>
+
+          <UserInfo user={loggedInUser} />
+          <hr className="my-8"/>
+          <LogoutButton onLogout={handleLogout} />
         </div>
       ) : (
-        <p>No user is logged in.</p>
+        <p className="text-pink-800">No user is logged in.</p>
       )}
     </div>
   );
