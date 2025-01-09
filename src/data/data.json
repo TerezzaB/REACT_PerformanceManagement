@@ -22,8 +22,7 @@
     "budgetManagement": {
       "monthlyBudget": {
         "totalBudget": 30000,
-        "spent": 28475,
-        "remaining": 1525
+        "spent": 328475
       },
       "PNOTracking": {
         "current": 32,

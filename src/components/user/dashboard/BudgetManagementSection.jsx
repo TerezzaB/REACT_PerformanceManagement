@@ -1,46 +1,75 @@
 export default function BudgetManagementSection({ budget }) {
   const { monthlyBudget, PNOTracking, dailySpend, dailyRevenue } = budget;
 
+  
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
         {
           title: 'Monthly Budget',
           data: monthlyBudget,
-          color: 'blue-500',
+          remaining: 10,
           isMonthlyBudget: true,
         },
-        { title: 'PNO Tracking', data: PNOTracking, color: 'green-500' },
-        { title: 'Daily Spend', data: dailySpend, color: 'red-500' },
-        { title: 'Daily Revenue', data: dailyRevenue, color: 'purple-500' },
+        { title: 'PNO Tracking', data: PNOTracking },
+        { title: 'Daily Spend', data: dailySpend },
+        { title: 'Daily Revenue', data: dailyRevenue },
       ].map((item, index) => (
         <div
           key={index}
-          className={`p-6 bg-white shadow-lg rounded-lg border-l-4 border-${item.color} hover:shadow-xl transition-shadow`}
+          className={`p-6 bg-white shadow-lg rounded-lg border-l-4 hover:shadow-xl transition-shadow`}
         >
-          <h4 className="font-semibold text-gray-600 text-lg">{item.title}</h4>
+          <h4 className="font-semibold text-gray-600 text-md mb-3">{item.title}</h4>
 
           {item.isMonthlyBudget ? (
-            <div>
-              <p className="text-xl font-bold text-gray-800 mt-2">
-                Total Budget: {item.data.totalBudget}
-              </p>
-              <p className="text-sm text-gray-500">
-                Spent: {item.data.spent}
-              </p>
-              <p className="text-sm text-gray-500">
-                Remaining: {item.data.remaining}
-              </p>
-            </div>
+            <>
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500 mt-2">Total Budget:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.data.totalBudget}</div>
+              </div>
+
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500 mt-2">Spent:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.data.spent}</div>
+              </div>
+
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500 mt-2">Remaining:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.remaining}</div>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="mt-4">
+                <div className="h-2 w-full bg-gray-300 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-black"
+                    style={{
+                      width: `${Math.min((item.data.spent / item.data.totalBudget) * 100, 100)}%`,
+                    }}
+                  ></div>
+                </div>
+
+                {/* For future useage  */}
+                {/* 
+                    <div className="text-xs text-gray-500 mt-1">
+                      {Math.min((item.data.spent / item.data.totalBudget) * 100, 100).toFixed(1)}% spent
+                    </div>
+                */}
+
+              </div>
+            </>
           ) : (
-            <div>
-              <p className="text-xl font-bold text-gray-800 mt-2">
-                Current: {item.data.current}
-              </p>
-              <p className="text-sm text-gray-500">
-                Target: {item.data.target}
-              </p>
-            </div>
+            <>
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500 mt-2">Current:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.data.current}</div>
+              </div>
+
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500">Target:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.data.target}</div>
+              </div>
+            </>
           )}
         </div>
       ))}
