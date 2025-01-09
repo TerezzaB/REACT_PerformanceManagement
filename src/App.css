@@ -19,3 +19,7 @@
 }
 
 .danger-button:hover{ background-color: #be185d; /* hover:bg-pink-800 */ }
+
+
+/* KPI CARDS */
+.kpi-card { background: linear-gradient(135deg, #a985e2 30%, #3f8ed9 100%); }

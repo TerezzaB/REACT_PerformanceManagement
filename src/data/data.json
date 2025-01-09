@@ -5,11 +5,11 @@
           "current": 15,
           "target": 15
         },
-        "conversions": {
+        "Conversions": {
           "current": 346,
           "target": 400
         },
-        "cost_per_conversion": {
+        "Cost/Conv": {
           "current": 342,
           "target": 400
         },
