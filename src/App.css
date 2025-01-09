@@ -1,8 +1,8 @@
 #root {
   max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  padding-left: 7rem; /*just temporary dummy idea*/
+  padding: 2rem 3rem 2rem 7rem;
   text-align: center;
 }
 
@@ -22,4 +22,4 @@
 
 
 /* KPI CARDS */
-.kpi-card { background: linear-gradient(135deg, #a985e2 30%, #3f8ed9 100%); }
+.bg_kpi_gradient { background: var(--kpi_gradient) }

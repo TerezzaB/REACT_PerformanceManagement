@@ -10,7 +10,7 @@ export default function KPISection({ metrics }) {
       {metrics.map((metric, index) => (
         <div
           key={index}
-          className="ps-6 pe-2 py-4 shadow-lg rounded-lg border-l-4 hover:shadow-xl transition-shadow text-left text-white kpi-card"
+          className="ps-6 pe-2 py-4 shadow-lg rounded-lg border-l-4 hover:shadow-xl transition-shadow text-left text-white bg_kpi_gradient"
         >
           <h4 className="font-semibold text-lg">{metric.title}</h4>
           <p className="text-2xl font-bold mt-2">{metric.value}</p>

@@ -49,20 +49,20 @@ export default function LogIn() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-purple-400"
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2  focus:border-purple-400"
           />
         </div>
 
         <button
           onClick={handleLogin}
-          className="w-full mt-6 bg-pink-500 text-white py-3 rounded-lg font-semibold hover:bg-pink-600 transition duration-200"
+          className="w-full mt-6 bg_kpi_gradient text-white py-3 rounded-lg font-semibold hover:opacity-80 transition duration-200"
         >
           Log In
         </button>

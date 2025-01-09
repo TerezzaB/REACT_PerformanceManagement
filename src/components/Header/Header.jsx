@@ -36,7 +36,6 @@ export default function Header() {
         }`}
       >
         <div className="flex flex-col items-center h-full py-6">
-          {/* App Logo */}
           <div className="mb-8 text-center">
             <h1
               className={`text-xl font-bold transition-opacity ${

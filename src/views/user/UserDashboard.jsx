@@ -2,10 +2,11 @@ import React from 'react';
 import KPISection from '../../components/user/dashboard/KPISection';
 import BudgetManagementSection from '../../components/user/dashboard/BudgetManagementSection';
 import ChartSection from '../../components/user/dashboard/ChartSection';
-import data from '../../data/data.json'; // Dáta z JSON súboru
+import data from '../../data/data.json';
 
 export default function UserDashboardView() {
   const { overview, budgetManagement, charts } = data;
+  console.log(budgetManagement);
 
   const kpiMetrics = Object.keys(overview.metrics).map((key) => ({
     title: key,
@@ -14,7 +15,7 @@ export default function UserDashboardView() {
   }));
 
   return (
-    <div className="">
+    <div>
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h1>
       <div className="space-y-8 space-x-2">
         <KPISection metrics={kpiMetrics} />
