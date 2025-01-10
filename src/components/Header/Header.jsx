@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartBar, faUser, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../Modal';
+import Modal from '../Modal'
+import infoModal from '../../data/modals.json';
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false); // Pre toggle na tabletoch
+  const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [infoModalContent, setInfoModalContent] = useState('');
   const location = useLocation();
 
   const isLoginOrSignup = ['/login', '/signup'].includes(location.pathname);
@@ -14,6 +16,10 @@ export default function Header() {
   if (isLoginOrSignup) {
     return null;
   }
+
+  useEffect(() => {
+    setInfoModalContent(infoModal.infoModal);
+  }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -124,7 +130,7 @@ export default function Header() {
         </button>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} content="Info Modal Content" />
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal} content={infoModalContent} />
     </div>
   );
 }
