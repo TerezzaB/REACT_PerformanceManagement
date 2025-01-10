@@ -17,7 +17,11 @@ export default function BudgetManagementSection({ budget }) {
           remaining,
           isMonthlyBudget: true,
         },
-        { title: 'PNO Tracking', data: PNOTracking },
+        {
+          title: 'PNO Tracking',
+          data: PNOTracking,
+          isPNO: true,
+        },
         { title: 'Daily Spend', data: dailySpend },
         { title: 'Daily Revenue', data: dailyRevenue },
       ].map((item, index) => (
@@ -27,7 +31,33 @@ export default function BudgetManagementSection({ budget }) {
         >
           <h4 className="font-semibold text-gray-600 text-md mb-3">{item.title}</h4>
 
-          {item.isMonthlyBudget ? (
+          {item.isPNO ? (
+            <>
+              {/* Display Target and Current */}
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500 mt-2">Target:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.data.target}</div>
+              </div>
+              <div className="flex justify-between">
+                <div className="text-sm font-semibold text-gray-500 mt-2">Current:</div>
+                <div className="text-sm font-bold text-gray-800 mt-2">{item.data.current}</div>
+              </div>
+
+              {/* Display Alert */}
+              {item.data.current > item.data.target ? (
+                <div className="p-2 mt-4 border-2 border-red-500 rounded-lg bg-red-50 text-red-600 text-center font-semibold">
+                  PNO is above target by{' '}
+                  <span className="font-bold">
+                    {((item.data.current - item.data.target) / item.data.target * 100).toFixed(1)}%
+                  </span>
+                </div>
+              ) : (
+                <div className="p-2 mt-4 text-sm border-2 border-green-500 rounded-lg bg-green-50 text-green-600 text-center font-semibold">
+                  PNO is within the target range
+                </div>
+              )}
+            </>
+          ) : item.isMonthlyBudget ? (
             <>
               <div className="flex justify-between">
                 <div className="text-sm font-semibold text-gray-500 mt-2">Total Budget:</div>
