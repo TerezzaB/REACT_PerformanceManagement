@@ -22,11 +22,11 @@
     "budgetManagement": {
       "monthlyBudget": {
         "totalBudget": 3000,
-        "spent": 1475
+        "spent": 1345
       },
       "PNOTracking": {
-        "current": 12,
-        "target": 30
+        "current": 21,
+        "target": 20
       },
       "dailySpend": {
         "current": 824,
