@@ -6,7 +6,6 @@ import data from '../../data/data.json';
 
 export default function UserDashboardView() {
   const { overview, budgetManagement, charts } = data;
-  console.log(budgetManagement);
 
   const kpiMetrics = Object.keys(overview.metrics).map((key) => ({
     title: key,

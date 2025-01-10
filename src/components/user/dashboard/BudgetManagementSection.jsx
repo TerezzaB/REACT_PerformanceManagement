@@ -1,14 +1,20 @@
+import React from 'react';
+
 export default function BudgetManagementSection({ budget }) {
   const { monthlyBudget, PNOTracking, dailySpend, dailyRevenue } = budget;
 
-  
+  const remaining =
+    monthlyBudget.totalBudget < monthlyBudget.spent
+      ? '-'
+      : monthlyBudget.totalBudget - monthlyBudget.spent;
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
         {
           title: 'Monthly Budget',
           data: monthlyBudget,
-          remaining: 10,
+          remaining,
           isMonthlyBudget: true,
         },
         { title: 'PNO Tracking', data: PNOTracking },
@@ -48,14 +54,6 @@ export default function BudgetManagementSection({ budget }) {
                     }}
                   ></div>
                 </div>
-
-                {/* For future useage  */}
-                {/* 
-                    <div className="text-xs text-gray-500 mt-1">
-                      {Math.min((item.data.spent / item.data.totalBudget) * 100, 100).toFixed(1)}% spent
-                    </div>
-                */}
-
               </div>
             </>
           ) : (

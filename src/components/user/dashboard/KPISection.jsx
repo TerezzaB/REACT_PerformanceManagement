@@ -3,8 +3,6 @@ export default function KPISection({ metrics }) {
     return <p className="text-gray-500">No metrics available</p>;
   }
 
-  console.log(metrics);
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {metrics.map((metric, index) => (
