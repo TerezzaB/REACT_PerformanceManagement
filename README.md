@@ -4,8 +4,8 @@ A simple KPI application built with React + Vite.
 
 ## Features
 
-- KPI app tracking user performance
-- Performance management
+- Performance tracking app
+- Performance management (in progress)
 
 ## Prerequisites
 
