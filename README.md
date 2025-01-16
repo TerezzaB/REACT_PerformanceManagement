@@ -41,5 +41,5 @@ A simple KPI application built with React + Vite.
 ## Attention !!
 - You need to have your own firebaseDB to connect this project on DB. I did NOT commit firebase folder (security reasoons).
 
-1. **Create firebase folder in src folder (with firebase file) of this project.
-2. **In the firebase file add configuration from your own firestoreDB.
+1. Create firebase folder in src folder (with firebase file) of this project.
+2. In the firebase file add configuration from your own firestoreDB.
